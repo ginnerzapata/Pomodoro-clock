@@ -1,13 +1,24 @@
 const timerDisplay = document.querySelector('.time-left');
 const nextBreak = document.querySelector('.next-break');
-const minutesSession = document.querySelector('#minutes-session');
-const minutesBreak = document.querySelector('#minutes-break');
+const domMinutesSession = document.querySelector('#minutes-session');
+const domMinutesBreak = document.querySelector('#minutes-break');
 const playButton = document.querySelector('#play');
+
+
+let sessionMinutes = 25;
+let breakMinutes = 5;
+
+domMinutesSession.textContent = sessionMinutes;
+domMinutesBreak.textContent = breakMinutes;
+
+
+
+
 
 
 let countdown; //setInterval store
 
-function sessionStart (seconds){
+function timer (seconds){
     const now = Date.now();
     const then = now + seconds * 1000;
     displayTimeLeft(seconds);
