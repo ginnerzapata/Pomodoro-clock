@@ -2,17 +2,24 @@ const timerDisplay = document.querySelector('.time-left');
 const nextBreak = document.querySelector('.next-break');
 const domMinutesSession = document.querySelector('#minutes-session');
 const domMinutesBreak = document.querySelector('#minutes-break');
-const playButton = document.querySelector('#play');
-
+const buttons = [...document.querySelectorAll('.fa')];
+const playButton = buttons[0];
 
 let sessionMinutes = 25;
 let breakMinutes = 5;
 
 domMinutesSession.textContent = sessionMinutes;
 domMinutesBreak.textContent = breakMinutes;
+//convert  minutes to seconds
+let toSeconds;
 
+function minutesToSeconds (min){toSeconds = min * 60};
 
-
+//play function
+ function playSession(min){
+     minutesToSeconds(min);
+     timer(toSeconds);
+ }
 
 
 
@@ -23,6 +30,7 @@ function timer (seconds){
     const then = now + seconds * 1000;
     displayTimeLeft(seconds);
     displayEndTime(then);
+    clearInterval(countdown);
 
 
     countdown = setInterval(() => {
@@ -50,3 +58,5 @@ function displayEndTime(timestamp){
     nextBreak.textContent = `Session ends at ${hour}:${minutes < 10 ? '0' :''}${minutes}`;
 
 }
+
+playButton.addEventListener('click', () => playSession(sessionMinutes));
