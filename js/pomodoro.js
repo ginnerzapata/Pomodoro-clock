@@ -21,7 +21,16 @@ function minutesToSeconds (min){toSeconds = min * 60};
      timer(toSeconds);
  }
 
+//buttons function
+buttons.forEach(button => button.addEventListener('click',() => timeValues(button)));
 
+function timeValues(button){
+    if(button === buttons[1]) domMinutesSession.textContent = --sessionMinutes;
+    else if(button === buttons[2]) domMinutesSession.textContent = ++sessionMinutes;
+    else if(button === buttons[3]) domMinutesBreak.textContent = --breakMinutes;
+    else if(button === buttons[4]) domMinutesBreak.textContent = ++breakMinutes;
+    return;
+}
 
 let countdown; //setInterval store
 
